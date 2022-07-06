@@ -2,7 +2,6 @@ package com.example.swipe_it.Classes;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.swipe_it.R;
 import com.example.swipe_it.databinding.ReelDesignBinding;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Handler;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 Context context;
@@ -54,15 +49,34 @@ int seekTime;
                     holder.binding.playPause.setVisibility(View.INVISIBLE);
             }
         });
-        holder.binding.videoView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isPlayed){
+                    holder.binding.videoView.requestFocus();
                     holder.binding.videoView.pause();
                     isPlayed=false;
                     holder.binding.playPause.setVisibility(View.VISIBLE);
                     seekTime=holder.binding.videoView.getCurrentPosition();
                 }else {
+                    holder.binding.videoView.requestFocus();
+                    holder.binding.videoView.seekTo(seekTime);
+                    holder.binding.videoView.start();
+                    isPlayed=true;
+                    holder.binding.playPause.setVisibility(View.INVISIBLE);
+                }
+            }
+        });   holder.binding.playPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isPlayed){
+                    holder.binding.videoView.requestFocus();
+                    holder.binding.videoView.pause();
+                    isPlayed=false;
+                    holder.binding.playPause.setVisibility(View.VISIBLE);
+                    seekTime=holder.binding.videoView.getCurrentPosition();
+                }else {
+                    holder.binding.videoView.requestFocus();
                     holder.binding.videoView.seekTo(seekTime);
                     holder.binding.videoView.start();
                     isPlayed=true;
@@ -82,9 +96,6 @@ int seekTime;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             binding=ReelDesignBinding.bind(itemView);
-
-
-
         }
     }
 }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/black">
@@ -17,73 +19,129 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/play_pause"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/play_ic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/videoView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:background="@color/transparent"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/videoView"
-        app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98">
+        app:layout_constraintVertical_bias="0.51"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/play_pause"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/play" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/videoView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.87">
 
         <ImageView
-            android:layout_margin="5dp"
             android:id="@+id/like"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/likes"
-            app:tint="#FF0000" />
-        <TextView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_margin="5dp"
-           android:gravity="center"
+            android:background="@color/transparent"
+            android:src="@drawable/like" />
+
+        <TextView
             android:id="@+id/likes_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/transparent"
+            android:gravity="center"
             android:text="1545"
             android:textColor="@color/white"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
+
         <ImageView
             android:id="@+id/comments"
-            android:layout_margin="5dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/comment" />
-        <TextView
             android:layout_margin="5dp"
+            android:src="@drawable/comment" />
+
+        <TextView
             android:id="@+id/comments_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:text="123"
             android:textColor="@color/white"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
+
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_margin="5dp"
             android:id="@+id/profile_image"
             android:layout_width="50dp"
             android:layout_height="60dp"
+            android:layout_margin="5dp"
             android:src="@drawable/ic_person"
             app:civ_border_color="@color/white"
             app:civ_border_width="2dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Profile Name"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/videoView"
+        app:layout_constraintVertical_bias="0.877" />
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/videoView"
+        app:layout_constraintVertical_bias="0.82">
+
         <TextView
-            android:layout_margin="5dp"
-            android:id="@+id/profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Profile Name"
+            android:text="Description..."
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold"/>
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="1" />
     </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

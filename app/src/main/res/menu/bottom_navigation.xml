@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/home"
+        android:title="Home"
+        app:showAsAction="always" />
+
+
+    <item
+        android:enabled="false"
+        android:title="Upload"
+        app:showAsAction="always"
+        android:checkable="false"
+        android:checked="false"
+        />
+
+    <item
+        android:id="@+id/profile"
+        android:enabled="true"
+        android:icon="@drawable/profile"
+        android:title="Profile"
+        app:showAsAction="withText" />
+</menu>
