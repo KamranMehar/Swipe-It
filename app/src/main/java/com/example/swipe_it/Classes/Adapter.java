@@ -39,7 +39,7 @@ int seekTime;
         holder.binding.videoView.setVideoPath(model.getVideo_url());
         Glide.with(context).load(model.getProfile_url()).into(holder.binding.profileImage);
         holder.binding.profileName.setText(model.getProfile_name());
-
+        holder.binding.description.setText(model.getDescription());
         holder.binding.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {

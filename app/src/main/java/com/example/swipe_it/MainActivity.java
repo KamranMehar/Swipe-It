@@ -1,9 +1,12 @@
 package com.example.swipe_it;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +28,11 @@ ActivityMainBinding binding;
 
         Window w = getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+//Animations
+        Animation slideUp = AnimationUtils.loadAnimation(this,R.anim.slide_up);
+        binding.coordinatorView.setAnimation(slideUp);
+        Animation blink = AnimationUtils.loadAnimation(this,R.anim.fade);
+        binding.upload.setAnimation(blink);
 
         Home home_Fragment=new Home();
         Profile profile_fragment=new Profile();

@@ -36,7 +36,10 @@ FragmentHomeBinding binding;
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        list.add(new Video_Model("android.resource://" + getContext().getPackageName() + "/" + R.raw.a,
+
+
+
+       /* list.add(new Video_Model("android.resource://" + getContext().getPackageName() + "/" + R.raw.a,
                 R.drawable.my_profile,"Kamran Mehar"));
         list.add(new Video_Model("android.resource://" + getContext().getPackageName() + "/" + R.raw.b,
                 R.drawable.my_profile,"Kamran Mehar"));
@@ -51,12 +54,7 @@ FragmentHomeBinding binding;
         adapter=new Adapter(getContext(),list);
         binding.viewPager.setAdapter(adapter);
         binding.viewPager.canScrollHorizontally(0);
-        binding.viewPager.canScrollVertically(1);
-
-
-
-
-
+        binding.viewPager.canScrollVertically(1);*/
 
 
 
