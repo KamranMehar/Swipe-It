@@ -31,8 +31,6 @@ ActivityMainBinding binding;
 //Animations
         Animation slideUp = AnimationUtils.loadAnimation(this,R.anim.slide_up);
         binding.coordinatorView.setAnimation(slideUp);
-        Animation blink = AnimationUtils.loadAnimation(this,R.anim.fade);
-        binding.upload.setAnimation(blink);
 
         Home home_Fragment=new Home();
         Profile profile_fragment=new Profile();

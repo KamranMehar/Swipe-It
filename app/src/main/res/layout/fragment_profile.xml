@@ -1,49 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:diagonal="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.Profile"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:background="@color/white">
 
-    <LinearLayout
-        android:id="@+id/diagonalView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        diagonal:layout_constraintEnd_toEndOf="parent"
-        diagonal:layout_constraintStart_toStartOf="parent"
-        diagonal:layout_constraintTop_toTopOf="parent">
 
-        <com.github.florent37.diagonallayout.DiagonalLayout
-            android:id="@+id/diagonalLayout"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:elevation="10dp"
-            diagonal:diagonal_angle="38"
-            diagonal:diagonal_direction="left"
-            diagonal:diagonal_position="bottom">
+            android:layout_height="wrap_content">
 
-            <View
+        <LinearLayout
+            android:id="@+id/diagonalView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            diagonal:layout_constraintEnd_toEndOf="parent"
+            diagonal:layout_constraintStart_toStartOf="parent"
+            diagonal:layout_constraintTop_toTopOf="parent">
+
+            <com.github.florent37.diagonallayout.DiagonalLayout
+                android:id="@+id/diagonalLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/green" />
+                android:layout_height="300dp"
+                android:elevation="10dp"
+                diagonal:diagonal_angle="38"
+                diagonal:diagonal_direction="left"
+                diagonal:diagonal_position="bottom">
 
-        </com.github.florent37.diagonallayout.DiagonalLayout>
-    </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/green" />
+            </com.github.florent37.diagonallayout.DiagonalLayout>
+        </LinearLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_margin="5dp"
-        android:src="@drawable/my_profile"
-        diagonal:civ_border_color="@color/teal_200"
-        diagonal:civ_border_width="5dp"
-        diagonal:layout_constraintBottom_toBottomOf="parent"
-        diagonal:layout_constraintEnd_toEndOf="parent"
-        diagonal:layout_constraintStart_toStartOf="parent"
-        diagonal:layout_constraintTop_toTopOf="parent"
-        diagonal:layout_constraintVertical_bias="0.24000001" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Logout"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                diagonal:layout_constraintBottom_toBottomOf="parent"
+                diagonal:layout_constraintEnd_toEndOf="parent"
+                diagonal:layout_constraintHorizontal_bias="0.02"
+                diagonal:layout_constraintStart_toStartOf="parent"
+                diagonal:layout_constraintTop_toTopOf="parent"
+                diagonal:layout_constraintVertical_bias="0.25" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/profile"
+            diagonal:civ_border_color="@color/green"
+            diagonal:civ_border_width="5dp"
+            diagonal:layout_constraintBottom_toBottomOf="parent"
+            diagonal:layout_constraintEnd_toEndOf="parent"
+            diagonal:layout_constraintStart_toStartOf="parent"
+            diagonal:layout_constraintTop_toTopOf="parent"
+            diagonal:layout_constraintVertical_bias="0.24000001" />
+<LinearLayout
+    android:gravity="center"
+    android:id="@+id/nameLinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    diagonal:layout_constraintEnd_toEndOf="parent"
+    diagonal:layout_constraintStart_toStartOf="parent"
+    diagonal:layout_constraintTop_toBottomOf="@+id/profile_image">
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="User Name"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+      />
+<ImageView
+    android:layout_marginStart="2dp"
+    android:layout_gravity="center"
+    android:id="@+id/verified"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:src="@drawable/verified"/>
+</LinearLayout>
+
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="About"
+            android:textColor="#424341"
+            android:textSize="25sp"
+            diagonal:layout_constraintEnd_toEndOf="parent"
+            diagonal:layout_constraintStart_toStartOf="parent"
+            diagonal:layout_constraintTop_toBottomOf="@+id/nameLinearLayout" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                diagonal:layout_constraintBottom_toBottomOf="parent"
+                diagonal:layout_constraintEnd_toEndOf="parent"
+                diagonal:layout_constraintStart_toStartOf="parent"
+                diagonal:layout_constraintTop_toBottomOf="@+id/about" />
+
+            <TextView
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Edit Profile"
+                android:textColor="@color/green"
+                android:textSize="15sp"
+                diagonal:layout_constraintBottom_toTopOf="@+id/recyclerView"
+                diagonal:layout_constraintEnd_toEndOf="parent"
+                diagonal:layout_constraintStart_toStartOf="parent"
+                diagonal:layout_constraintTop_toBottomOf="@+id/about" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
