@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_background"
-        android:padding="5dp"
+        android:padding="10dp"
         android:layout_marginBottom="10dp"
         android:textColor="@color/white"
         android:id="@+id/addComment"
