@@ -7,6 +7,7 @@
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipIt/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipIt/app/src/main/res/layout/reel_design.xml" value="0.14921875" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.126" />
+        <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/avd_like_animation.xml" value="0.1375" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/back_ic.xml" value="0.1375" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/background_linear_gradiant.xml" value="0.126" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/bnv_color.xml" value="0.1375" />
@@ -15,16 +16,20 @@
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/ic_launcher_background.xml" value="0.126" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/ic_wave.xml" value="0.1375" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/ic_wave_uper.xml" value="0.1375" />
+        <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/like.xml" value="0.188" />
+        <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/like_animation_.xml" value="0.1375" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/likes.xml" value="0.126" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/my_button.xml" value="0.1375" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/pause_ic.xml" value="0.1735" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/profile.xml" value="0.1375" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/search.xml" value="0.1375" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/drawable/upload_image_ic.xml" value="0.1375" />
+        <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/layout/activity_comments.xml" value="0.2" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/layout/activity_edit.xml" value="0.25" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
+        <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/layout/comment_item.xml" value="0.25" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/SwipeIt/app/src/main/res/layout/fragment_upload.xml" value="0.2" />

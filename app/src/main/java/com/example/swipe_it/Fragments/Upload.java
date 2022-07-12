@@ -154,6 +154,7 @@ public class Upload extends Fragment {
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Video Uploading");
         progressDialog.show();
+        progressDialog.setCancelable(false);
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("/Videos/" + userId+"/"+video_model.getVideoId());
 
         storageReference.putFile(videoURI).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {

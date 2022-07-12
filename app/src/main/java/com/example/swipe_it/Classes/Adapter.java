@@ -1,55 +1,153 @@
 package com.example.swipe_it.Classes;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import com.bumptech.glide.Glide;
+import com.example.swipe_it.Comments;
 import com.example.swipe_it.R;
+
 import com.example.swipe_it.databinding.ReelDesignBinding;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
 import java.util.Objects;
 
-public class Adapter extends FirebaseRecyclerAdapter<Video_Model, Adapter.ViewHolder> {
+public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
     boolean isPlayed = false;
     Context context;
-    int seekTime;
+    int seekTime,positionItem;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
-    public Adapter(@NonNull FirebaseRecyclerOptions<Video_Model> options, Context context) {
-        super(options);
+    List<Video_Model> list;
+    Boolean isLiked = false;
+    String userId;
+    AnimatedVectorDrawableCompat avd;
+    AnimatedVectorDrawable avd2;
+
+    DatabaseReference likeReference = FirebaseDatabase.getInstance().getReference("/Likes/");
+    public Adapter(List<Video_Model> list, Context context) {
+      this.list=list;
         this.context = context;
     }
 
+
+    @NonNull
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Video_Model model) {
-         firebaseDatabase = FirebaseDatabase.getInstance();
-         databaseReference = firebaseDatabase.getReference("/Users/" + model.getUserId()+"/name");
+    public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.reel_design, parent, false);
+        return new Holder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull Holder holder, int position) {
+        Video_Model model=list.get(position);
+
+       userId= FirebaseAuth.getInstance().getUid();
+
+
+
+        likeReference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child(model.videoId).hasChild(userId)){
+                    holder.binding.like.setColorFilter(context.getResources().getColor(R.color.red));
+                    int count=  (int)snapshot.child(model.videoId).getChildrenCount();
+                    holder.binding.likesCount.setText(count+"");
+                }else {
+                    holder.binding.like.setColorFilter(context.getResources().getColor(R.color.white));
+                    int count=  (int)snapshot.child(model.videoId).getChildrenCount();
+                    holder.binding.likesCount.setText(count+"");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        holder.binding.like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isLiked=true;
+                final Drawable drawable=holder.binding.like.getDrawable();
+                if (drawable instanceof  AnimatedVectorDrawableCompat){
+                    avd=(AnimatedVectorDrawableCompat) drawable;
+                   avd.start();
+
+                }else if (drawable instanceof AnimatedVectorDrawable){
+                    avd2=(AnimatedVectorDrawable) drawable;
+                    avd2.start();
+
+                }
+
+                likeReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (isLiked){
+                            if (snapshot.child(model.videoId).hasChild(userId)){
+                                likeReference.child(model.videoId).child(userId).removeValue();
+                                isLiked=false;
+                            }else {
+                                likeReference.child(model.videoId).child(userId).setValue(userId);
+                                isLiked=false;
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+            }
+        });
+
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("/Users/" + model.getUserId());
+
+          positionItem= holder.getBindingAdapterPosition();
+
+        holder.binding.comments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, Comments.class);
+                intent.putExtra("VideoId",model.getVideoId());
+                intent.putExtra("VideoUserId",model.getVideoId());
+                context.startActivity(intent);
+            }
+        });
 
         if (Objects.equals(model.getUserId(), "9xP5sUpSVtY1cWOXMYhltPrp6Pp1")) {
             holder.binding.verified.setVisibility(View.VISIBLE);
         } else {
             holder.binding.verified.setVisibility(View.INVISIBLE);
         }
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    holder.binding.profileName.setText( snapshot.getValue(String.class));
+                    User user=snapshot.getValue(User.class);
+                    assert user != null;
+                    holder.binding.profileName.setText(user.getName());
+                    Glide.with(context).load(user.getProfileUrl()).into(holder.binding.profileImage);
                 }
             }
             @Override
@@ -57,31 +155,22 @@ public class Adapter extends FirebaseRecyclerAdapter<Video_Model, Adapter.ViewHo
             }
         });
 
-
         holder.binding.playPause.setVisibility(View.INVISIBLE);
         holder.binding.videoView.setVideoPath(model.getVideo_url());
-        Glide.with(context).load(model.getProfile_url()).into(holder.binding.profileImage);
-
         holder.binding.description.setText(model.getDescription());
-        holder.binding.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.start();
-                mp.setLooping(true);
-                isPlayed = true;
+        holder.binding.videoView.setOnPreparedListener(mp -> {
+            mp.start();
+            mp.setLooping(true);
+            isPlayed = true;
 
-                mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-                    @Override
-                    public boolean onInfo(MediaPlayer mp, int what, int extra) {
-                        holder.binding.playPause.setVisibility(View.INVISIBLE);
-                        if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START)
-                            holder.binding.mProgressBar.setVisibility(View.VISIBLE);
-                        if (what == MediaPlayer.MEDIA_INFO_BUFFERING_END)
-                            holder.binding.mProgressBar.setVisibility(View.INVISIBLE);
-                        return false;
-                    }
-                });
-            }
+            mp.setOnInfoListener((mp1, what, extra) -> {
+                holder.binding.playPause.setVisibility(View.INVISIBLE);
+                if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START)
+                    holder.binding.mProgressBar.setVisibility(View.VISIBLE);
+                if (what == MediaPlayer.MEDIA_INFO_BUFFERING_END)
+                    holder.binding.mProgressBar.setVisibility(View.INVISIBLE);
+                return false;
+            });
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,26 +208,51 @@ public class Adapter extends FirebaseRecyclerAdapter<Video_Model, Adapter.ViewHo
                 }
             }
         });
+
+        FirebaseDatabase db=FirebaseDatabase.getInstance();
+        DatabaseReference reference=db.getReference("/Comments/"+model.videoId);
+        reference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                holder.binding.commentsCount.setText(snapshot.getChildrenCount()+"");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+       DatabaseReference ref=db.getReference("/Likes/"+model.videoId);
+       ref.addValueEventListener(new ValueEventListener() {
+           @SuppressLint("SetTextI18n")
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+               holder.binding.likesCount.setText(snapshot.getChildrenCount()+"");
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
+
+           }
+       });
+
     }
 
-    @NonNull
+
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.reel_design, parent, false);
-        return new ViewHolder(view);
+    public int getItemCount() {
+        return list.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class Holder extends RecyclerView.ViewHolder{
         ReelDesignBinding binding;
-
-        public ViewHolder(@NonNull View itemView) {
+        public Holder(@NonNull View itemView) {
             super(itemView);
             binding = ReelDesignBinding.bind(itemView);
-
         }
     }
-
-   void getVideoUserName(String userId, TextView profileName) {
-
+    public int getItemPosition(){
+        return positionItem;
     }
 }

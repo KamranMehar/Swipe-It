@@ -18,6 +18,9 @@
         android:theme="@style/Theme.MyAppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".Comments"
+            android:exported="false" />
+        <activity
             android:name=".Edit"
             android:exported="false" />
         <activity

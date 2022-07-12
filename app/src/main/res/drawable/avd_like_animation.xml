@@ -1,0 +1,80 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="393dp"
+            android:height="359dp"
+            android:viewportWidth="393"
+            android:viewportHeight="359">
+            <group
+                android:name="group_1"
+                android:pivotX="215"
+                android:pivotY="215">
+                <path
+                    android:name="path"
+                    android:pathData="M 196.5 358.396 C 170.954 341.053 147.479 323.47 126.724 306.134 C 106.929 289.6 89.146 272.904 73.869 256.512 C 59.387 240.972 46.837 225.362 36.567 210.115 C 26.853 195.692 18.979 181.301 13.166 167.341 C 3.566 144.278 -0.611 122.077 0.752 101.356 C 1.38 91.801 3.205 82.532 6.175 73.806 C 9.011 65.475 12.922 57.542 17.8 50.228 C 22.993 42.442 29.304 35.313 36.556 29.039 C 43.573 22.969 51.445 17.719 59.954 13.435 C 76.761 4.973 95.571 0.5 114.35 0.5 C 122.028 0.5 129.652 1.255 137.011 2.744 C 144.555 4.27 151.87 6.579 158.752 9.607 C 165.866 12.736 172.588 16.666 178.732 21.286 C 185.121 26.092 190.969 31.71 196.113 37.985 L 196.5 38.457 L 196.887 37.985 C 202.03 31.712 207.878 26.094 214.267 21.289 C 220.411 16.669 227.134 12.739 234.249 9.609 C 241.132 6.581 248.447 4.271 255.991 2.745 C 263.35 1.255 270.974 0.5 278.65 0.5 C 297.431 0.5 316.242 4.972 333.049 13.434 C 341.559 17.718 349.431 22.967 356.448 29.036 C 363.7 35.31 370.011 42.439 375.204 50.225 C 380.082 57.539 383.993 65.472 386.828 73.802 C 389.799 82.528 391.623 91.797 392.251 101.352 C 393.612 122.074 389.434 144.276 379.834 167.341 C 374.021 181.301 366.148 195.692 356.433 210.115 C 346.163 225.362 333.613 240.972 319.131 256.512 C 303.854 272.904 286.071 289.6 266.276 306.134 C 245.521 323.47 222.046 341.053 196.5 358.396 Z"
+                    android:fillColor="#ffff"
+                    android:strokeWidth="1"/>
+            </group>
+        </vector>
+    </aapt:attr>
+    <target android:name="group_1">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="scaleX"
+                    android:duration="400"
+                    android:valueFrom="0"
+                    android:valueTo="0.85"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/overshoot_interpolator"/>
+                <objectAnimator
+                    android:propertyName="scaleY"
+                    android:duration="400"
+                    android:valueFrom="0"
+                    android:valueTo="0.85"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/overshoot_interpolator"/>
+                <objectAnimator
+                    android:propertyName="scaleX"
+                    android:startOffset="600"
+                    android:duration="200"
+                    android:valueFrom="1"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/accelerate_interpolator"/>
+                <objectAnimator
+                    android:propertyName="scaleY"
+                    android:startOffset="600"
+                    android:duration="200"
+                    android:valueFrom="1"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/accelerate_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="path">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="50"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/accelerate_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="600"
+                    android:duration="200"
+                    android:valueFrom="1"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/accelerate_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+</animated-vector>

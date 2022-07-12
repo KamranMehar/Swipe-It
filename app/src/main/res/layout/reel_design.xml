@@ -67,14 +67,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.87">
 
+
         <ImageView
             android:id="@+id/like"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_margin="5dp"
-            android:background="@color/transparent"
-            android:src="@drawable/like"
-            app:tint="@color/white" />
+            app:srcCompat="@drawable/avd_like_animation" />
 
         <TextView
             android:id="@+id/likes_count"
@@ -83,7 +81,7 @@
             android:layout_margin="5dp"
             android:background="@color/transparent"
             android:gravity="center"
-            android:text="1545"
+            android:text="0"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -99,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="123"
+            android:text="0"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -135,9 +133,10 @@
         android:textStyle="bold" />
 
     <ImageView
+        android:visibility="invisible"
         android:id="@+id/verified"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:src="@drawable/verified"
         />
 </LinearLayout>
